@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/static/images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/prism-light.css" id="theme-style">
+    <title>{{m.domain}}</title>
+</head>
+
+<body>
+
+    <div class="intern" id="intern">
+        <div class="intern_pages" id="intern_pages">
+            {{(m.content|safe)}}
+            <div class="intern_btn">
+                <a href="/internship/{{m.domain}}/{{m.day - 1}}"><button>Prev</button></a>
+                <a href="/internship/{{m.domain}}/{{m.day + 1}}"><button>Next</button></a>
+            </div>
+            <div class="back_dashboard" style="display: flex; justify-content: center; margin: 1.5rem 0rem; gap: 1rem;">
+                <a href="/dashboard"><button>Back to Dashboard</button></a>
+            </div>
+
+
+
+
+
+            <div class="dark">
+                <!-- <i class="fa fa-circle-half"></i> -->
+                <i class="fa fa-adjust" onclick="toggleDarkMode()"></i>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="/static/prism.js">Prism.highlightAll();</script>
+
+    <script>
+        // Check if the user's preference is stored in localStorage
+        var userPreference = localStorage.getItem("darkMode");
+
+        // If userPreference is not null, apply the stored preference
+        if (userPreference === "dark") {
+            var element = document.getElementById("intern_pages");
+            var backGround = document.getElementById("intern");
+            const themeStyle = document.getElementById('theme-style');
+
+            if (themeStyle.getAttribute('href') === '/static/prism-light.css') {
+                themeStyle.setAttribute('href', '/static/prism-dark.css');
+            } else {
+                themeStyle.setAttribute('href', '/static/prism-light.css');
+            }
+
+            backGround.classList.add("back");
+            element.classList.add("dark-mode");
+        }
+
+        function toggleDarkMode() {
+            var element = document.getElementById("intern_pages");
+            var backGround = document.getElementById("intern");
+            const themeStyle = document.getElementById('theme-style');
+
+            backGround.classList.toggle("back");
+            element.classList.toggle("dark-mode");
+
+            if (themeStyle.getAttribute('href') === '/static/prism-light.css') {
+                themeStyle.setAttribute('href', '/static/prism-dark.css');
+            } else {
+                themeStyle.setAttribute('href', '/static/prism-light.css');
+            }
+
+            if (element.classList.contains("dark-mode")) {
+                localStorage.setItem("darkMode", "dark");
+            } else {
+                localStorage.setItem("darkMode", "light");
+            }
+        }
+
+        // if ("{{ m.domain }}" === "Python") {
+        // var img = document.createElement("img");
+        // img.src = '/static/images/blockchain.png';
+        // var body = document.getElementsByTagName("body")[0];
+        // body.appendChild(img);
+    // }
+    </script>
+</body>
+
+</html>

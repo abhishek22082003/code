@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/static/style.css">
+    
+    <title>Update Internship Data</title>
+    <link rel="icon" href="/static/images/logo.png" type="image/x-icon">
+</head>
+<body>
+    <div>
+    <form method="POST" action="/updateData/{{m.domain}}/{{m.day}}" class="update_page">
+        <label for="domain">Domain:</label>
+        <select name="domain" id="domain" ><option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="C">C</option>
+            <option value="C++">Cpp</option>
+            <option value="blockchain">Blockchain</option>
+            <option value="ai">AIandChatGpt</option>
+            <option value="webd">WebD</option></select><br>
+
+        <label for="week">Week:</label>
+        <input value="{{m.week}}" type="number" id="week" name="week" required><br>
+
+        <label for="day">Day:</label>
+        <input value="{{m.day}}" type="number" id="day" name="day" required><br>
+
+        <!-- <input type="text" name="content" id=""> -->
+       
+        <textarea id="c" name = "content" rows="10">{{m.content}}</textarea>
+
+        <!-- Use the "content" input multiple times to allow adding multiple pages -->
+       
+
+        <button type="submit">Add/Update Data</button>
+    </form>
+</div>
+<a href="/admindashboard" style="display: flex; justify-content: center;"><button>Return To Dashboard</button></a>
+</div>
+</body>
+</html>

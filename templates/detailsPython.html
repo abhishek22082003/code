@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<body>
+    <section class="internship_detail_page">
+        <h1 style="text-align: center; font-size: 30px;">Welcome to our Python Internship Program!</h1>
+        <div class="detail_page">
+
+            <h3>About the Internship</h3>
+            <p>Are you passionate about programming and interested in learning Python? Look no further! Our Python Internship is designed to provide you with hands-on experience and essential skills to kickstart your journey as a Python developer.</p>
+        </div>
+
+        <div class="detail_page">
+            <h3>Internship Details</h3>
+            <ul>
+                <li><strong>Duration:</strong> 4 weeks</li>
+                <li><strong>Location:</strong> Online</li>
+                <li><strong>Registration Fee:</strong> Rs. 180 only!</li>
+            </ul>
+        </div>
+
+        <div class="detail_page">
+            <h3>What You'll Learn</h3>
+            <ul>
+                <li>*Python Fundamentals and techniques relevant to the field</li>
+                <li>Working with data structures and algorithms in Python</li>
+                <li>* Working on real-world projects and scenarios</li>
+                <li>*Developing practical skills and gaining industry insights</li>
+                <li>* Creating and interacting with Programs</li>
+
+            </ul>
+        </div>
+
+        <div class="detail_page">
+            <h3>Benefits of Joining</h3>
+            <ul>
+                <li>* Hands-on projects to build your portfolio</li>
+                <li>* Guidance from experienced Python developers</li>
+                <li>* Access to a vibrant community of fellow learners</li>
+                <li>* Certificate of completion upon finishing the internship</li>
+            </ul>
+        </div>
+
+        <div class="detail_page">
+            <h3>How to Apply</h3>
+            <p>To apply for the Internship, simply click the button below and fill out the application form.</p>
+            <a href="/applyform/Python">
+                <button>Apply Now</button>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <!-- <p>Contact us at <a href="mailto:internship@example.com">internship@example.com</a> for any inquiries.</p> -->
+    </footer>
+
+    <script>
+        // Detect if the user navigates back using the browser's back button
+        window.addEventListener("popstate", function (event) {
+            // Redirect the user to the home pageargin:
+            window.location.href = "/";
+        });
+    </script>
+</body>
+
+
+
+{% endblock body %}

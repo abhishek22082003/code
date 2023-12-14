@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+    <title>CodeStream</title>
+</head>
+
+<body>
+
+    <div class="header" style="z-index: 0;">
+        <div class='nav-bar'>
+            <div class="logo">
+                <a href='/'><img src="../static/images/logon.png" alt="" class='logoimage' /></a>
+                <a href='/'>
+                    <h1>CodeStream</h1>
+                </a>
+            </div>
+            <div class="nav-container" style="z-index: 1;"></div>
+        </div>
+    </div>
+
+    <form action="/signup" method="post" class='register'>
+        <h1>Register</h1>
+        <input type="text" name="name" placeholder="Your Name" onChange={handleChange} required></input>
+        <input type="text" name="email" placeholder="Your Email" onChange={handleChange} required></input>
+        <input type="password" name="password" placeholder="Your Password" onChange={handleChange} required></input>
+        <input type="password" name="fpass" placeholder="Re-enter Password" onChange={handleChange} required></input>
+        <button id="f" class="button">Register</button>
+        <!-- <div>or</div> -->
+        <!-- <div class="button" onClick={() => navigate("/login")}>Login</div> -->
+        <!-- <a href="/login" class="button">Login</a> -->
+        <div class="reg_link">Already have an account? <a href="/login" id="rej">Login</a></div>
+        <div id="alert" class="alert">
+            {{ error_message }}
+        </div>
+
+        <div class="loader" id="loader">
+            <img src="../static/images/loader.gif" alt="" />
+        </div>
+    </form>
+    <script>
+        let a = {{ pas }};
+        if (a === 3 || a === 4) {
+            let errorMessage = "";
+            if (a === 3) {
+                errorMessage = "Email is already registered";
+            } else if (a === 4) {
+                errorMessage = "Password does not match";
+            }
+
+            let alertElement = document.getElementById("alert");
+            alertElement.textContent = errorMessage;
+            alertElement.classList.add("visible");
+
+            setTimeout(function () {
+                alertElement.classList.remove("visible");
+            }, 2500); // Adjust the time as needed
+        }
+
+        function handleLogin() {
+            let emailInput = document.querySelector('input[name="email"]');
+            // let passwordInput = document.querySelector('input[name="password"]');
+            let alertElement = document.getElementById("alert");
+            let loaderElement = document.getElementById("loader");
+
+            let emailValue = emailInput.value.trim();
+            // let passwordValue = passwordInput.value.trim();
+
+            if (emailValue === "") {
+                let errorMessage = "All inputs are required.";
+                alertElement.textContent = errorMessage;
+                alertElement.classList.add("visible");
+                setTimeout(function () {
+                    alertElement.classList.remove("visible");
+                }, 2500);
+            } else {
+                loaderElement.classList.add("viewloader");
+            }
+        }
+    </script>
+</body>
+
+</html>

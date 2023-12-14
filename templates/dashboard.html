@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <section>
+        <header>
+            <h1>Welcome to Your Dashboard, {{ session['name'] }}!</h1>
+        </header>
+        <div class="enroled_internship">
+            <h2>Your Enrolled Internships</h2>
+            {% if enrolled_internships %}
+            <div class="internship-cards">
+                {% for internship in enrolled_internships %}
+                <div class="card">
+                    <h3 style="font-size: 25px; text-transform: capitalize;">{{ internship.internship }}</h3>
+                    <p>Internship ID: {{ internship.sno }}</p>
+                    <p>Start Date: {{ (internship.date|string)[0:11] }}</p>
+
+
+                    <!-- <p>Progress : {{(((up[internship.internship]/112)*100)|string)[:1]}} % </p> -->
+                    <!-- <a href="/internship/{{internship.internship}}/{{(up[internship.internship])-1}}">
+                        <button>Continue</button>
+                    </a> -->
+                    <a href="/internship/{{ internship.internship }}/{% if up[internship.internship] == 0 %}0{% else %}{{ up[internship.internship] - 1 }}{% endif %}">
+                        <button>Continue</button>
+                    </a>
+                    
+                    
+                    <!-- Add other details you want to display -->
+                </div>
+                {% endfor %}
+            </div>
+            
+
+            {% else %}
+            <p>No internships enrolled yet.</p>
+            {% endif %}
+        </div>
+        <!-- <section class="service-sec">
+            <h2>Your Enrolled Internships</h2>
+            {% if enrolled_internships %}
+            <div class="services-images">
+                {% for internship in enrolled_internships %}
+                <div class="itservices">
+                    <div class="card">
+                        <img src="../static/images/webdesign.png" alt="Avatar" />
+                        <div class="container">
+                            <h5>{{ internship.internship }}</h5>
+                            <p>Internship ID: {{ internship.sno }}</p>
+                            <p>Start Date: {{ internship.date }}</p>
+                            <button>Know more</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>No internships enrolled yet.</p>
+            {% endif %}
+        </section> -->
+    </section>
+
+
+    <!-- Rest of the content -->
+
+    <footer>
+        <!-- <p>Contact us at <a href="mailto:internship@example.com">internship@example.com</a> for any inquiries.</p> -->
+    </footer>
+</body>
+
+</html>
+
+{% endblock body %}

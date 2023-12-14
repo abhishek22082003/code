@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+    <title>CodeStream</title>
+</head>
+
+<body>
+    <form action="/emailVerification" method="post" class='forgetpass' style="margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <h1>Verify OTP</h1>
+        <input id="f" type="number" name='otp' placeholder='Enter OTP'/>
+        <button type="submit">submit</button>
+
+        <div id="alert" class="alert">
+            {{ error_message }}
+        </div>
+
+        <div class="loader" id="loader">
+            <img src="../static/images/loader.gif" alt="" />
+        </div>
+    </form>
+    <script>
+        let a = {{ pas }};
+        if (a === 5) {
+            let errorMessage = "";
+            if (a === 5 || a === 6) {
+                errorMessage = "Invalid OTP";
+            } else if (a === 6){
+                errorMessage = "Successfully register";
+            }
+
+            let alertElement = document.getElementById("alert");
+            alertElement.textContent = errorMessage;
+            alertElement.classList.add("visible");
+
+            setTimeout(function () {
+                alertElement.classList.remove("visible");
+            }, 2500); // Adjust the time as needed
+
+
+
+            function handleLogin() {
+            let emailInput = document.querySelector('input[name="otp"]');
+            // let passwordInput = document.querySelector('input[name="password"]');
+            let alertElement = document.getElementById("alert");
+            let loaderElement = document.getElementById("loader");
+
+            let emailValue = emailInput.value.trim();
+            // let passwordValue = passwordInput.value.trim();
+
+            if (emailValue === "") {
+                let errorMessage = "Please enter OTP";
+                alertElement.textContent = errorMessage;
+                alertElement.classList.add("visible");
+                setTimeout(function () {
+                    alertElement.classList.remove("visible");
+                }, 2500);
+            } else {
+                loaderElement.classList.add("viewloader");
+            }
+        }
+        }
+    </script>
+</body>
+
+</html>

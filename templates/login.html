@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>CodeStream</title>
+    <link rel="icon" href="../static/images/logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="header" style="z-index: 0;">
+        <div class='nav-bar'>
+            <div class="logo">
+                <a href='/'><img src="../static/images/logon.png" alt="" class='logoimage' /></a>
+                <a href='/'>
+                    <h1>CodeStream</h1>
+                </a>
+            </div>
+            <div class="nav-container" style="z-index: 1;"></div>
+        </div>
+    </div>
+
+    <form action="/login" method='post' div class='login'>
+        <h1>Login</h1>
+        <input type="email" name='email' placeholder='Enter Email' required />
+        <input type="password" name='password' placeholder='Enter password' required />
+        <button type="submit" id="f" class='button'>Login</button>
+        <a href="/forgot" class="otp">Forget Password?</a>
+
+        <div class="reg_link">Don't have an account yet? <a href="/register" id="rej">Create One</a></div>
+
+        <!-- <span>Don't have an account</span><a href="/register" id="rej" style="font-size: 1rem; color: black;">Register</a> -->
+        <!-- Display error message if it exists -->
+
+
+        <div id="alert" class="alert">
+            {{ error_message }}
+        </div>
+        <div class="loader" id="loader">
+            <img src="../static/images/loader.gif" alt="" />
+        </div>
+    </form>
+    <script>
+        let a = "{{ pas }}";
+        console.log(a)
+        console.log(typeof a)
+        if (a == 1 || a == 2) {
+            let errorMessage = "";
+            if (a == 1) {
+                errorMessage = "Wrong Email or password";
+            } else if (a == 2) {
+                errorMessage = "Email is not registered";
+            }
+
+            let alertElement = document.getElementById("alert");
+            alertElement.textContent = errorMessage;
+            alertElement.classList.add("visible");
+
+            setTimeout(function () {
+                alertElement.classList.remove("visible");
+            }, 2500);
+        }
+
+        function handleLogin() {
+            let emailInput = document.querySelector('input[name="email"]');
+            let passwordInput = document.querySelector('input[name="password"]');
+            let alertElement = document.getElementById("alert");
+            let loaderElement = document.getElementById("loader");
+
+            let emailValue = emailInput.value.trim();
+            let passwordValue = passwordInput.value.trim();
+
+            if (emailValue === "" || passwordValue === "") {
+                let errorMessage = "Email and password are required.";
+                alertElement.textContent = errorMessage;
+                alertElement.classList.add("visible");
+                setTimeout(function () {
+                    alertElement.classList.remove("visible");
+                }, 2500);
+            } else {
+                loaderElement.classList.add("viewloader");
+            }
+        }
+    </script>
+</body>
+
+</html>
